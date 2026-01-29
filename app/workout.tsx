@@ -1143,7 +1143,11 @@ export default function WorkoutScreen() {
                             </TouchableOpacity>
                         </View>
                     ) : (
-                        <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
+                        <ScrollView
+                            ref={scrollViewRef}
+                            className="flex-1 px-4"
+                            showsVerticalScrollIndicator={false}
+                        >
                             {/* Start Empty Workout Card */}
                             <TouchableOpacity
                                 onPress={() => {
