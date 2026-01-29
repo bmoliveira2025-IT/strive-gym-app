@@ -54,7 +54,7 @@ export function WeeklySummary({ stats, history }: WeeklySummaryProps) {
         return data;
     };
 
-    const chartWidth = Math.max(0, (screenWidth - 48 - 16) / 3);
+    const chartWidth = Math.max(1, (screenWidth > 0 ? screenWidth : 375) - 48 - 16) / 3;
 
     const MetricCard = ({ title, value, subValue, isDown, data, suffix }: any) => (
         <View
