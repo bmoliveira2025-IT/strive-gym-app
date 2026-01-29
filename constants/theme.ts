@@ -5,25 +5,37 @@
 
 import { Platform } from 'react-native';
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+// Premium Palette Colors
+const primary = '#3B82F6';
+const background = '#020617';
+const surface = '#0F172A';
+const text = '#F8FAFC';
+const secondaryText = '#94A3B8';
+const secondary = '#475569';
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    // For now, we are prioritizing dark mode, but we can set light mode to a clean white/slate theme
+    text: '#0F172A',
+    background: '#FFFFFF',
+    tint: primary,
+    icon: '#64748B',
+    tabIconDefault: '#64748B',
+    tabIconSelected: primary,
+    error: '#EF4444',
+    warning: '#F59E0B',
+    success: '#10B981',
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    text: text,
+    background: background,
+    tint: primary,
+    icon: secondary,
+    tabIconDefault: secondary,
+    tabIconSelected: primary,
+    error: '#EF4444',
+    warning: '#F59E0B',
+    success: '#10B981',
   },
 };
 
