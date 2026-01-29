@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, Modal, Dimensions } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image, Modal, Dimensions, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useSavedWorkouts } from '../context/SavedWorkoutsContext';
 import { WorkoutCard } from '../components/WorkoutCard';
@@ -485,12 +485,14 @@ export default function Home() {
                                         shadowOffset: { width: 0, height: 4 },
                                         shadowOpacity: 0.1,
                                         shadowRadius: 8,
-                                        elevation: 4
+                                        elevation: 4,
+                                        // Added for web stability
+                                        maxWidth: Platform.OS === 'web' ? 140 : 160
                                     }}
                                     className="rounded-3xl overflow-hidden border relative p-4 justify-between"
                                 >
                                     {/* Text Content */}
-                                    <View className="z-10">
+                                    <View className="z-10 bg-transparent">
                                         <Text style={{ color: theme.colors.text }} className="text-lg font-bold capitalize">{part.name}</Text>
                                         <Text style={{ color: theme.colors.primary }} className="text-xs font-bold">{part.count} séries</Text>
                                     </View>
@@ -501,11 +503,11 @@ export default function Home() {
                                     </View>
 
                                     {/* Background Image - Positioned Bottom Right */}
-                                    <View className="absolute -right-2 -bottom-2 w-28 h-32">
+                                    <View className="absolute -right-2 -bottom-2 w-28 h-32" style={{ overflow: 'hidden' }}>
                                         {part.image ? (
                                             <Image
                                                 source={part.image}
-                                                className="w-full h-full"
+                                                style={{ width: '100%', height: '100%', position: 'absolute' }}
                                                 resizeMode="contain"
                                             />
                                         ) : (
@@ -537,13 +539,15 @@ export default function Home() {
                                     style={{
                                         backgroundColor: theme.colors.card,
                                         borderColor: theme.colors.cardBorder,
-                                        width: (width - 40 - 24) / 3, // 3 columns with gaps
+                                        width: Math.min(160, (width - 40 - 24) / 3), // 3 columns with gaps, capped for wide screens
                                         height: 110,
                                         shadowColor: theme.colors.shadow,
                                         shadowOffset: { width: 0, height: 2 },
                                         shadowOpacity: 0.05,
                                         shadowRadius: 4,
-                                        elevation: 2
+                                        elevation: 2,
+                                        // Added for web stability
+                                        maxWidth: Platform.OS === 'web' ? 120 : (width - 40 - 24) / 3
                                     }}
                                     className="rounded-2xl border items-center justify-center p-2"
                                 >

@@ -61,7 +61,8 @@ export function WeeklySummary({ stats, history }: WeeklySummaryProps) {
             style={{
                 backgroundColor: theme.colors.card,
                 borderColor: theme.colors.cardBorder,
-                width: chartWidth
+                width: chartWidth,
+                maxWidth: 150 // Cap for wide screens
             }}
             className="rounded-2xl p-3 border overflow-hidden relative shadow-sm"
         >
