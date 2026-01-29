@@ -185,8 +185,47 @@ function TabsContent() {
 import { WorkoutHistoryProvider } from '../context/WorkoutHistoryContext';
 import { UserProfileProvider } from '../context/UserProfileContext';
 
-export default function TabLayout() {
+function RootLayoutContent() {
   const { theme } = useTheme();
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: Platform.OS === 'web' ? '#000' : 'transparent' }}>
+      <View
+        style={{
+          flex: 1,
+          width: '100%',
+          maxWidth: Platform.OS === 'web' ? 500 : undefined,
+          alignSelf: 'center',
+          backgroundColor: theme.colors.background,
+          // Add a subtle border/shadow only on web to define the app "frame"
+          ...(Platform.OS === 'web' ? {
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0.5,
+            shadowRadius: 20,
+            elevation: 10,
+          } : {})
+        }}
+      >
+        <UserProfileProvider>
+          <SavedWorkoutsProvider>
+            <FavoritesProvider>
+              <ExerciseHistoryProvider>
+                <WorkoutHistoryProvider>
+                  <WorkoutProvider>
+                    <TabsContent />
+                  </WorkoutProvider>
+                </WorkoutHistoryProvider>
+              </ExerciseHistoryProvider>
+            </FavoritesProvider>
+          </SavedWorkoutsProvider>
+        </UserProfileProvider>
+      </View>
+    </GestureHandlerRootView>
+  );
+}
+
+export default function TabLayout() {
   const [isMounted, setIsMounted] = useState(false);
   const [fontsLoaded] = useFonts({
     ...Ionicons.font,
@@ -206,39 +245,7 @@ export default function TabLayout() {
 
   return (
     <ThemeProvider>
-      <GestureHandlerRootView style={{ flex: 1, backgroundColor: Platform.OS === 'web' ? '#000' : 'transparent' }}>
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            maxWidth: Platform.OS === 'web' ? 500 : undefined,
-            alignSelf: 'center',
-            backgroundColor: theme.colors.background,
-            // Add a subtle border/shadow only on web to define the app "frame"
-            ...(Platform.OS === 'web' ? {
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 0 },
-              shadowOpacity: 0.5,
-              shadowRadius: 20,
-              elevation: 10,
-            } : {})
-          }}
-        >
-          <UserProfileProvider>
-            <SavedWorkoutsProvider>
-              <FavoritesProvider>
-                <ExerciseHistoryProvider>
-                  <WorkoutHistoryProvider>
-                    <WorkoutProvider>
-                      <TabsContent />
-                    </WorkoutProvider>
-                  </WorkoutHistoryProvider>
-                </ExerciseHistoryProvider>
-              </FavoritesProvider>
-            </SavedWorkoutsProvider>
-          </UserProfileProvider>
-        </View>
-      </GestureHandlerRootView>
+      <RootLayoutContent />
     </ThemeProvider>
   );
 }
