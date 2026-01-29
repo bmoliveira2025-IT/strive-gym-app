@@ -2,7 +2,7 @@ import { SavedWorkout, SavedExercise } from '../context/SavedWorkoutsContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const GEMINI_API_KEY = 'AIzaSyDtZ4JGlfo7zYV7kEIAdSkjSYPoznkN-Hw';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 const CACHE_KEY = '@ai_workout_plans_cache';
 const CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
 
