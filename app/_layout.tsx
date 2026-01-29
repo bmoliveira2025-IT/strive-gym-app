@@ -7,6 +7,8 @@ import { SavedWorkoutsProvider } from '../context/SavedWorkoutsContext';
 import { ExerciseHistoryProvider } from '../context/ExerciseHistoryContext';
 import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { useFonts } from 'expo-font';
+import { useEffect, useState } from 'react';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import WebInstallBanner from '../components/WebInstallBanner';
@@ -184,6 +186,23 @@ import { WorkoutHistoryProvider } from '../context/WorkoutHistoryContext';
 import { UserProfileProvider } from '../context/UserProfileContext';
 
 export default function TabLayout() {
+  const [isMounted, setIsMounted] = useState(false);
+  const [fontsLoaded] = useFonts({
+    ...Ionicons.font,
+  });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted || !fontsLoaded) {
+    return (
+      <View style={{ flex: 1, backgroundColor: '#000', alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ color: '#FFF' }}>Carregando Strive...</Text>
+      </View>
+    );
+  }
+
   return (
     <ThemeProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>

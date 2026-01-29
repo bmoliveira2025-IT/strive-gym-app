@@ -54,12 +54,14 @@ export function WeeklySummary({ stats, history }: WeeklySummaryProps) {
         return data;
     };
 
+    const chartWidth = Math.max(0, (screenWidth - 48 - 16) / 3);
+
     const MetricCard = ({ title, value, subValue, isDown, data, suffix }: any) => (
         <View
             style={{
                 backgroundColor: theme.colors.card,
                 borderColor: theme.colors.cardBorder,
-                width: (screenWidth - 48 - 16) / 3 // 48 padding, 16 gap
+                width: chartWidth
             }}
             className="rounded-2xl p-3 border overflow-hidden relative shadow-sm"
         >
@@ -79,7 +81,7 @@ export function WeeklySummary({ stats, history }: WeeklySummaryProps) {
                         labels: [],
                         datasets: [{ data: data }]
                     }}
-                    width={(screenWidth - 48 - 16) / 3}
+                    width={chartWidth}
                     height={40}
                     withDots={false}
                     withInnerLines={false}
