@@ -143,31 +143,40 @@ function TabsContent() {
                   console.log('Platform:', Platform.OS);
                   console.log('isWorkoutActive:', isWorkoutActive);
 
-                  const { Alert } = require('react-native');
-                  Alert.alert(
-                    "Descartar Treino",
-                    "Tem certeza que deseja descartar o treino atual?",
-                    [
-                      {
-                        text: "Cancelar",
-                        style: "cancel",
-                        onPress: () => console.log('Cancelled discard')
-                      },
-                      {
-                        text: "Descartar",
-                        style: "destructive",
-                        onPress: () => {
-                          console.log('User confirmed discard');
-                          console.log('Calling clearWorkout...');
-                          clearWorkout();
-                          console.log('clearWorkout called');
-                          console.log('Navigating to home...');
-                          router.replace('/');
-                          console.log('Navigation triggered');
+                  const performDiscard = () => {
+                    console.log('User confirmed discard');
+                    console.log('Calling clearWorkout...');
+                    clearWorkout();
+                    console.log('clearWorkout called');
+                    console.log('Navigating to home...');
+                    router.replace('/');
+                    console.log('Navigation triggered');
+                  };
+
+                  if (Platform.OS === 'web') {
+                    const confirmed = window.confirm("Tem certeza que deseja descartar o treino atual?");
+                    if (confirmed) {
+                      performDiscard();
+                    }
+                  } else {
+                    const { Alert } = require('react-native');
+                    Alert.alert(
+                      "Descartar Treino",
+                      "Tem certeza que deseja descartar o treino atual?",
+                      [
+                        {
+                          text: "Cancelar",
+                          style: "cancel",
+                          onPress: () => console.log('Cancelled discard')
+                        },
+                        {
+                          text: "Descartar",
+                          style: "destructive",
+                          onPress: performDiscard
                         }
-                      }
-                    ]
-                  );
+                      ]
+                    );
+                  }
                 }}
                 className="flex-row items-center"
               >
