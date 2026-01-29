@@ -23,7 +23,13 @@
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "Strive Workout",
+      "shortName": "Strive",
+      "display": "standalone",
+      "themeColor": "#4F8FF7",
+      "backgroundColor": "#ffffff",
+      "description": "Seu companheiro inteligente de treinos"
     },
     "plugins": [
       "expo-router",
