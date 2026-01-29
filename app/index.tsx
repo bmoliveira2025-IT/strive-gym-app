@@ -503,11 +503,11 @@ export default function Home() {
                                     </View>
 
                                     {/* Background Image - Positioned Bottom Right */}
-                                    <View className="absolute -right-2 -bottom-2 w-28 h-32" style={{ overflow: 'hidden' }}>
+                                    <View className="absolute" style={{ right: -8, bottom: -8, width: 112, height: 128, overflow: 'hidden' }}>
                                         {part.image ? (
                                             <Image
                                                 source={part.image}
-                                                style={{ width: '100%', height: '100%', position: 'absolute' }}
+                                                style={{ width: 112, height: 128 }}
                                                 resizeMode="contain"
                                             />
                                         ) : (
@@ -551,11 +551,11 @@ export default function Home() {
                                     }}
                                     className="rounded-2xl border items-center justify-center p-2"
                                 >
-                                    <View className="w-12 h-12 mb-2 items-center justify-center">
+                                    <View className="mb-2 items-center justify-center" style={{ width: 48, height: 48 }}>
                                         {part.image ? (
                                             <Image
                                                 source={part.image}
-                                                className="w-full h-full"
+                                                style={{ width: 48, height: 48 }}
                                                 resizeMode="contain"
                                             />
                                         ) : (
